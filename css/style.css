@@ -11,7 +11,7 @@ input.inputvalue {
   width: 70px;
 }
 
-
+/* ここからタブ実装のためのstyle指定(コピペ) */
 .cp_tab *, .cp_tab *:before, .cp_tab *:after {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
