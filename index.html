@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>グレフェス火力計算機</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="アイドルマスターシャイニーカラーズ（シャニマス）におけるエンドコンテンツの1つであるグレードフェスの火力計算ツール" />
+  <meta name="keywords" content="アイドルマスターシャイニーカラーズ,シャニマス,グレードフェス,グレフェス,火力,計算" />
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="js/calculator.min.js"></script>
+  <script data-ad-client="ca-pub-1713994469891034" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+
+<body>
+  <h1>グレフェス火力計算機 ver 1.0.1</h1>
+  <p>
+    <span style="color: red; font-size: small;">
+      <strong>
+        ※計算は多少誤差が生じる可能性があります
+      </strong>
+    </span>
+  </p>
+
+  <h2>ユニットステータス</h2>
+  <p><span style="color: red; font-size: small;"><strong>※編成後のボーナスこみの実値をいれること</strong></span></p>
+  <div>
+    <p><b>Leader</b></p>
+    <p>vo値 <input type="tel" id="leVo" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>da値 <input type="tel" id="leDa" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>vi値 <input type="tel" id="leVi" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>思い出Lv</p>
+    <form name="form3">
+      <select name="leMem" size="1" onchange="calcMemoriesMain()">
+        <option value="0">0</option>
+        <option value="0">1</option>
+        <option value="0.02">2</option>
+        <option value="0.03">3</option>
+        <option value="0.05">4</option>
+        <option value="0.075">5</option>
+      </select>
+    </form>
+  </div>
+  <div>
+    <p><b>Vocal</b></p>
+    <p>vo値 <input type="tel" id="voVo" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>da値 <input type="tel" id="voDa" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>vi値 <input type="tel" id="voVi" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>思い出Lv</p>
+    <form name="form4">
+      <select name="voMem" size="1" onchange="calcMemoriesMain()">
+        <option value="0">0</option>
+        <option value="0">1</option>
+        <option value="0.02">2</option>
+        <option value="0.03">3</option>
+        <option value="0.05">4</option>
+        <option value="0.075">5</option>
+      </select>
+    </form>
+  </div>
+  <div>
+    <p><b>Center</b></p>
+    <p>vo値 <input type="tel" id="ceVo" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>da値 <input type="tel" id="ceDa" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>vi値 <input type="tel" id="ceVi" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>思い出Lv</p>
+    <form name="form5">
+      <select name="ceMem" size="1" onchange="calcMemoriesMain()">
+        <option value="0">0</option>
+        <option value="0.8">1</option>
+        <option value="1.0">2</option>
+        <option value="1.2">3</option>
+        <option value="1.4">4</option>
+        <option value="2.0">5</option>
+      </select>
+    </form>
+  </div>
+  <div>
+    <p><b>Dance</b></p>
+    <p>vo値 <input type="tel" id="daVo" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>da値 <input type="tel" id="daDa" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>vi値 <input type="tel" id="daVi" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>思い出Lv</p>
+    <form name="form6">
+      <select name="daMem" size="1" onchange="calcMemoriesMain()">
+        <option value="0">0</option>
+        <option value="0">1</option>
+        <option value="0.02">2</option>
+        <option value="0.03">3</option>
+        <option value="0.05">4</option>
+        <option value="0.075">5</option>
+      </select>
+    </form>
+  </div>
+  <div>
+    <p><b>Visual</b></p>
+    <p>vo値 <input type="tel" id="viVo" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>da値 <input type="tel" id="viDa" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>vi値 <input type="tel" id="viVi" class="inputvalue" maxlength="4" onchange="calcNormalMain()" /></p>
+    <p>思い出Lv</p>
+    <form name="form7">
+      <select name="viMem" size="1" onchange="calcMemoriesMain()">
+        <option value="0">0</option>
+        <option value="0">1</option>
+        <option value="0.02">2</option>
+        <option value="0.03">3</option>
+        <option value="0.05">4</option>
+        <option value="0.075">5</option>
+      </select>
+    </form>
+  </div>
+
+  <h2>バフ・デバフ</h2>
+  <div>
+    <p><b>自ユニット</b></p>
+    <p>Vocal <input type="tel" id="voMyBuff" class="inputvalue" maxlength="3" onchange="calcNormalMain()" /> %</p>
+    <p>Dance <input type="tel" id="daMyBuff" class="inputvalue" maxlength="3" onchange="calcNormalMain()" /> %</p>
+    <p>Visual <input type="tel" id="viMyBuff" class="inputvalue" maxlength="3" onchange="calcNormalMain()" /> %</p>
+  </div>
+
+  <h2>アピール種別</h2>
+  <div class="cp_tab">
+    <input type="radio" name="cp_tab" id="tab1_1" aria-controls="first_tab01" checked>
+    <label for="tab1_1">通常</label>
+    <input type="radio" name="cp_tab" id="tab1_2" aria-controls="second_tab01">
+    <label for="tab1_2">約束</label>
+    <div class="cp_tabpanels">
+      <div id="first_tab01" class="cp_tabpanel">
+        <div>
+          <p><b>ポジション</b></p>
+          <form name="form1">
+            <select name="position" size="1" onchange="calcNormalMain()">
+              <option value="le">Leader</option>
+              <option value="vo">Vocal</option>
+              <option value="ce">Center</option>
+              <option value="da">Dance</option>
+              <option value="vi">Visual</option>
+            </select>
+          </form>
+        </div>
+        <div>
+          <p><b>倍率</b></p>
+          <p>Vocal <input type="number" id="voMag" class="inputvalue" maxlength="3" onchange="calcNormalMain()" /> 倍</p>
+          <p>Dance <input type="number" id="daMag" class="inputvalue" maxlength="3" onchange="calcNormalMain()" /> 倍</p>
+          <p>Visual <input type="number" id="viMag" class="inputvalue" maxlength="3" onchange="calcNormalMain()" /> 倍
+          </p>
+        </div>
+        <div>
+          <p><b>判定</b></p>
+          <form name="form2">
+            <select name="appealCoefficient" size="1" onchange="calcNormalMain()">
+              <option value="0.5">Bad</option>
+              <option value="1.0">Normal</option>
+              <option value="1.1">Good</option>
+              <option value="1.5">Perfect</option>
+            </select>
+          </form>
+        </div>
+        <h2>アピール実値</h2>
+        <div>
+          <p><b>Vo審査員</b></p>
+          <p>Vo実値 <b><label id="voVoActualVal">0</label></b></p>
+          <p>Da実値 <b><label id="voDaActualVal">0</label></b></p>
+          <p>Vi実値 <b><label id="voViActualVal">0</label></b></p>
+        </div>
+        <div>
+          <p><b>Da審査員</b></p>
+          <p>Vo実値 <b><label id="daVoActualVal">0</label></b></p>
+          <p>Da実値 <b><label id="daDaActualVal">0</label></b></p>
+          <p>Vi実値 <b><label id="daViActualVal">0</label></b></p>
+        </div>
+        <div>
+          <p><b>Vi審査員</b></p>
+          <p>Vo実値 <b><label id="viVoActualVal">0</label></b></p>
+          <p>Da実値 <b><label id="viDaActualVal">0</label></b></p>
+          <p>Vi実値 <b><label id="viViActualVal">0</label></b></p>
+        </div>
+      </div>
+      <div id="second_tab01" class="cp_tabpanel">
+        <div>
+          <p><b>追加効果</b></p>
+          <p>Vocal <input type="number" id="voAdd" class="inputvalue" maxlength="3" onchange="calcMemoriesMain()" /> 倍
+          </p>
+          <p>Dance <input type="number" id="daAdd" class="inputvalue" maxlength="3" onchange="calcMemoriesMain()" /> 倍
+          </p>
+          <p>Visual <input type="number" id="viAdd" class="inputvalue" maxlength="3" onchange="calcMemoriesMain()" /> 倍
+          </p>
+        </div>
+        <div>
+          <p><b>判定</b></p>
+          <form name="form8">
+            <select name="appealCoefficient" size="1" onchange="calcMemoriesMain()">
+              <option value="0.5">Bad</option>
+              <option value="1.5">Good</option>
+            </select>
+          </form>
+        </div>
+        <h2>アピール実値</h2>
+        <div>
+          <p><b>Vo審査員</b></p>
+          <p>実値 <b><label id="voMemActual">0</label></b></p>
+        </div>
+        <div>
+          <p><b>Da審査員</b></p>
+          <p>実値 <b><label id="daMemActual">0</label></b></p>
+        </div>
+        <div>
+          <p><b>Vi審査員</b></p>
+          <p>実値 <b><label id="viMemActual">0</label></b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p>参照↓</p>
+  <p>
+    <a href="https://wikiwiki.jp/shinycolors/%E4%BB%95%E6%A7%98%E8%80%83%E5%AF%9F">仕様考察 - シャニマス攻略 Wiki*</a>
+  </p>
+  <p>なにかありましたらコチラへ↓</p>
+  <p>
+    <a href="https://twitter.com/satop808756861">作者Twitter</a>
+  </p>
+</body>
+
+</html>
